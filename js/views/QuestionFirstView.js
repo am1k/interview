@@ -17,8 +17,6 @@ define([
 
         className: 'first-questions',
 
-        model: new MainModel,
-
         bindings: BackboneStickitForm.getBindings(['age', 'born', 'live', 'work', 'study']),
 
         events: {
@@ -57,21 +55,26 @@ define([
 
         setValidate: function(e){
             if(this.model.isValid(['age', 'born', 'live', 'work', 'study'])){
-                this.addValues();
+//                this.addValues();
+                this.model.set('age', $('#age').val());
+                this.model.set('born', $('#born').val());
+                this.model.set('live', $('#live').val());
+                this.model.set('work', $('#work').val());
+                this.model.set('study', $('#study').val());
             } else {
                 e.preventDefault();
             }
-        },
-
-        addValues: function(){
-            var self = this;
-            $('.questions').each(function(option, val){
-                self.model.get('questions').push($(val).text());
-            });
-            $('.answers').each(function(option,val){
-                self.model.get('answers').push($(val).val());
-            });
         }
+
+//        addValues: function(){
+//            var self = this;
+//            $('.questions').each(function(option, val){
+//                self.model.get('questions').push($(val).text());
+//            });
+//            $('.answers').each(function(option,val){
+//                self.model.get('answers').push($(val).val());
+//            });
+//        }
 
     });
 

@@ -7,8 +7,18 @@ define(['../lib/backbone'], function(Backbone){
     var MainModel = Backbone.Model.extend({
 
         defaults: {
-            questions: [],
-            answers: []
+            name: '',
+            surname: '',
+            age: 0,
+            born: '',
+            live: '',
+            work: '',
+            study: '',
+            hobby: '',
+            movie: '',
+            cartoon: '',
+            telephone: 0,
+            email: ''
         },
 
         validation: {

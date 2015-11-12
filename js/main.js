@@ -4,11 +4,13 @@ define([
     './views/PersonalView',
     './views/QuestionFirstView',
     './views/QuestionSecondView',
-    './views/ResultsView'
+    './views/ResultsView',
+    './models/MainModel'
 
-], function(Backbone, $, PersonView, FirstView, SecondView, ResultsView ){
+], function(Backbone, $, PersonView, FirstView, SecondView, ResultsView, MainModel ){
 
-    var MyRouter = Backbone.Router.extend({
+    var appModel = new MainModel,
+        MyRouter = Backbone.Router.extend({
         currentView: null,
         routes: {
             '': 'home',
@@ -23,29 +25,28 @@ define([
 
         home: function(){
             this.removeView();
-            this.currentView = new PersonView;
+            this.currentView = new PersonView({model: appModel});
             $('#application').append(this.currentView.$el);
         },
 
         firstQuestions: function(){
             this.removeView();
-            this.currentView = new FirstView;
+            this.currentView = new FirstView({model: appModel});
             $('#application').append(this.currentView.$el);
         },
 
         secondQuestions: function(){
             this.removeView();
-            this.currentView = new SecondView;
+            this.currentView = new SecondView({model: appModel});
             $('#application').append(this.currentView.$el);
         },
 
         all: function(){
             this.removeView();
-            this.currentView = new ResultsView;
+            this.currentView = new ResultsView({model: appModel});
             $('#result').append(this.currentView.$el);
         },
         removeView: function(){
-            console.log(this.currentView);
             this.currentView && this.currentView.close();
         }
 

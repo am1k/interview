@@ -20,8 +20,6 @@ define([
 
         className: 'second-questions',
 
-        model: new MainModel,
-
         bindings: BackboneStickitForm.getBindings(['hobby', 'email', 'telephone', 'movie', 'cartoon']),
 
         events: {
@@ -60,21 +58,26 @@ define([
 
         setValidate: function(e){
             if(this.model.isValid(['hobby', 'email', 'telephone', 'movie', 'cartoon'])){
-                this.addValues();
+//                this.addValues();
+                this.model.set('hobby', $('#hobby').val());
+                this.model.set('email', $('#email').val());
+                this.model.set('telephone', $('#telephone').val());
+                this.model.set('movie', $('#movie').val());
+                this.model.set('cartoon', $('#cartoon').val());
             } else {
                 e.preventDefault();
             }
-        },
-
-        addValues: function(){
-            var self = this;
-            $('.questions').each(function(option, val){
-                self.model.get('questions').push($(val).text());
-            });
-            $('.answers').each(function(option,val){
-                self.model.get('answers').push($(val).val());
-            });
         }
+
+//        addValues: function(){
+//            var self = this;
+//            $('.questions').each(function(option, val){
+//                self.model.get('questions').push($(val).text());
+//            });
+//            $('.answers').each(function(option,val){
+//                self.model.get('answers').push($(val).val());
+//            });
+//        }
 
     });
 

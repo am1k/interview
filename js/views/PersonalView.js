@@ -22,8 +22,6 @@ define([
 
         className: 'personal-information',
 
-        model: new MainModel,
-
         bindings: BackboneStickitForm.getBindings(['name', 'surname']),
 
         events: {
@@ -61,21 +59,24 @@ define([
 
         setValidate: function(e){
             if(this.model.isValid(['name', 'surname'])){
-              this.addValues();
+                this.model.set('name', $('#name').val());
+                this.model.set('surname', $('#surname').val());
+                console.log(this.model);
+//              this.addValues();
             } else {
                 e.preventDefault();
             }
-        },
-
-        addValues: function(){
-            var self = this;
-            $('.questions').each(function(option, val){
-                self.model.get('questions').push($(val).text());
-            });
-            $('.answers').each(function(option,val){
-                self.model.get('answers').push($(val).val());
-            });
         }
+
+//        addValues: function(){
+//            var self = this;
+//            $('.questions').each(function(option, val){
+//                self.model.get('questions').push($(val).text());
+//            });
+//            $('.answers').each(function(option,val){
+//                self.model.get('answers').push($(val).val());
+//            });
+//        }
     });
 
     return PersonalView;

@@ -15,8 +15,6 @@ define([
 
         className: 'results',
 
-        model: new MainModel,
-
         template: _.template(MyTemplates),
 
         initialize: function(){
@@ -25,7 +23,11 @@ define([
         },
 
         render: function(){
-            this.$el.html(this.template(this.model.toJSON() ));
+            var data = this.model.toJSON();
+            console.log(Object.keys(this.model.toJSON()).map(function(key){
+                return
+            }) )
+            this.$el.html(this.template( ));
             return this;
         }
 
