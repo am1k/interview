@@ -24,10 +24,8 @@ define([
 
         render: function(){
             var data = this.model.toJSON();
-            console.log(Object.keys(this.model.toJSON()).map(function(key){
-                return
-            }) )
-            this.$el.html(this.template( ));
+            console.log(data);
+            this.$el.html(this.template(data));
             return this;
         }
 
